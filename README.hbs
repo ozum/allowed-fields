@@ -1,0 +1,42 @@
+<!-- DO NOT EDIT README.md (It will be overridden by README.hbs) -->
+
+# allowed-fields
+
+# Description
+
+This module lets developer define white listed and black listed database fields and provides a function to check whether
+given field is allowed.
+
+# Synopsis
+
+```js
+import AllowedFields from 'allowed-fields';
+import type { Fields } from 'allowed-fields';
+
+const fields = new AllowedFields({
+  whiteList: { '': 'color', member: '*', manager: ['name', 'surname'] },
+  blackList: { member: ['salary', 'id'] },
+});
+
+// Field may be provided with single string as ('table.field').
+fields.isAllowed('color');            // true;
+fields.isAllowed('member.name');      // true;
+fields.isAllowed('manager.name');     // true;
+fields.isAllowed('member.salary');    // false;
+fields.isAllowed('zoo.name');         // false;
+
+// Field may be provided with two parameters as ('field', 'table')
+fields.isAllowed('name', 'member');   // true;
+fields.isAllowed('salary', 'member'); // true;
+```
+
+# Details
+
+This module is a utility for checking whether given fields are allowed according to simple blacklist and whitelist
+rules.
+
+Blacklist and whitelist are provided using object. Keys are relation (table) names, values are field names. To allow
+every field in a table `*`
+
+# API
+{{>main~}}

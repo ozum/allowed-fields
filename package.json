@@ -1,0 +1,58 @@
+{
+  "name": "allowed-fields",
+  "version": "0.0.1",
+  "description": "Define white listed and black listed database fields and check whether given field is allowed.",
+  "main": "index.js",
+  "bugs": "https://github.com/ozum/allowed-fields/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ozum/allowed-fields.git"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "db fields",
+    "whitelist",
+    "blacklist"
+  ],
+  "author": "Özüm Eldoğan",
+  "license": "MIT",
+  "scripts": {
+    "watch:babel": "babel src/ -d lib/ --source-maps -watch",
+    "build": "rm -rf lib && babel src/ -d lib/ --source-maps && flow gen-flow-files src --out-dir lib && npm run doc",
+    "flow": "flow",
+    "flowtyped": "flow-typed install",
+    "lint": "eslint src test --fix --ignore-path .gitignore",
+    "pretest": "flow && npm run lint",
+    "test": "cross-env NODE_ENV=test mocha --async-only --check-leaks --require babel-register",
+    "test:cover": "npm run pretest && cross-env NODE_ENV=test nyc mocha --async-only --check-leaks --require babel-register",
+    "map": "node -r source-map-support/register",
+    "doc": "jsdoc2md src/*.js --configure jsdoc.json --template README.hbs > README.md",
+    "preversion": "npm run testWithCoverage && npm run build && git add README.md"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.x",
+    "babel-eslint": "^8.x",
+    "babel-plugin-istanbul": "^4.x",
+    "babel-preset-env": "^1.x",
+    "babel-preset-flow": "^6.x",
+    "babel-register": "^6.x",
+    "code": "^5.x",
+    "cross-env": "^5.x",
+    "eslint": "^4.x",
+    "eslint-config-airbnb": "^16.x",
+    "eslint-plugin-import": "^2.x",
+    "eslint-plugin-jsx-a11y": "^6.x",
+    "eslint-plugin-react": "^7.x",
+    "flow-bin": "^0.x",
+    "jsdoc-babel": "^0.x",
+    "jsdoc-to-markdown": "^3.x",
+    "mocha": "^4.x",
+    "nyc": "^11.x",
+    "source-map-support": "^0.x"
+  },
+  "dependencies": {
+    "internal-data": "0.0.4"
+  }
+}
