@@ -14,13 +14,11 @@ type Fields = { [relationName: string]: string | string[] };
  * Private attributes of object.
  * @typedef   {Object}  FieldList~Internal
  * @private
- * @property  {Set} fields - Fields covered by rule.
+ * @property  {Map.<string, Set<string>>} relations - Relations covered by rule. Map keys are relation names, map values are set of field names.
  */
 type Internal = {
-  fields: Set<string>
+  relations: Map<string, Set<string>>
 }
-
-const hasDotRx = /\./;
 
 /**
  * @private
@@ -42,36 +40,38 @@ class FieldList {
   constructor(relationFields: Fields) {
     const internal = getInternal(this);
 
-    internal.fields = new Set();
+    internal.relations = new Map();
 
     Object.keys(relationFields).forEach((relation) => {
-      const fields = Array.isArray(relationFields[relation]) ? relationFields[relation] : [relationFields[relation]]; // Make array
-
-      fields.forEach((field) => {
-        internal.fields.add(`${relation}.${field}`);
-      });
+      const fields = new Set(Array.isArray(relationFields[relation]) ? relationFields[relation] : [relationFields[relation]]);
+      internal.relations.set(relation, fields);
     });
   }
 
   /**
-   * Returns whether given field is covered by this rule. Field name can be provided in single parameter or
-   * two parameters: i.e ('name', 'member')  or ('member.name')
+   * Returns whether given field in relation is covered by this rule.
    * @param   {string}    field         - Field name to test whether rule contains given field.
-   * @param   {string}    [relation=''] - Relation name of the field. If provided field must be in list as `relation.field` or `relation.*`.
+   * @param   {string}    relation      - Relation name of the field. Field must be in list as `relation.field` or `relation.*`.
    * @returns {boolean}                 - Whether given field is covered by rule.
    * @example
-   * fieldList.has('member.name');
    * fieldList.has('name', 'member');
    */
-  has(field: string, relation?: string = ''): boolean {
+  has(field: string, relation: string): boolean {
     const internal = getInternal(this);
+    const fields   = internal.relations.get(relation);
 
-    if (field.match(hasDotRx)) {
-      [relation, field] = field.split('.');
-    }
+    return (fields !== undefined) && (fields.has('*') || fields.has(field));
+  }
 
-    const fullName = `${relation}.${field}`;
-    return internal.fields.has(`${relation}.*`) || internal.fields.has(fullName);
+  /**
+   * Returns whether given relation is covered by list.
+   * @param   {string}    relation      - Relation name of the field.
+   * @returns {boolean}                 - Whether given relation is covered by rule.
+   * @example
+   * fieldList.hasRelation('member');
+   */
+  hasRelation(relation: string): boolean {
+    return getInternal(this).relations.has(relation);
   }
 }
 

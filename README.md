@@ -4,7 +4,7 @@
 
 # Description
 
-This module lets developer define white listed and blacklisted database fields and provides a function to check whether
+This module lets developer define white listed and black listed database fields and provides a function to check whether
 given field is allowed.
 
 # Synopsis
@@ -14,20 +14,22 @@ import AllowedFields from 'allowed-fields';
 import type { Fields } from 'allowed-fields';
 
 const fields = new AllowedFields({
-  whiteList: { '': 'color', member: '*', manager: ['name', 'surname'] },
-  blackList: { member: ['salary', 'id'] },
+  whiteList: { '': 'color', member: '*', company: '*', manager: ['name'] },
+  blackList: { member: ['salary'] },
 });
 
 // Field may be provided with single string as ('table.field').
-fields.isAllowed('color');            // true;
-fields.isAllowed('member.name');      // true;
-fields.isAllowed('manager.name');     // true;
-fields.isAllowed('member.salary');    // false;
-fields.isAllowed('zoo.name');         // false;
+fields.isAllowed('color');            // true  (color is allowed without relation name)
+fields.isAllowed('member.name');      // true  (All fields (*) of member except 'salary' is allowed)
+fields.isAllowed('manager.name');     // true  (It is in white list)
+fields.isAllowed('member.salary');    // false (It is in black list)
+fields.isAllowed('zoo.name');         // false (It is not in white list)
+fields.isAllowed('member.*');         // false (Member salary is black listed. All fields (*) except salary are allowed)
+fields.isAllowed('company.*');        // true  (All fields (*) of company is in white list)
 
 // Field may be provided with two parameters as ('field', 'table')
 fields.isAllowed('name', 'member');   // true;
-fields.isAllowed('salary', 'member'); // true;
+fields.isAllowed('salary', 'member'); // false;
 ```
 
 # Details
@@ -100,10 +102,10 @@ Field name can be provided in single parameter or two parameters: i.e ('name', '
 **Kind**: instance method of [<code>AllowedFields</code>](#AllowedFields)  
 **Returns**: <code>boolean</code> - - Whether field is valid.  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| field | <code>string</code> | Field name to test. |
-| [relation] | <code>string</code> | Relation name which field belongs to. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| field | <code>string</code> |  | Field name to test. |
+| [relation] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | Relation name which field belongs to. |
 
 **Example**  
 ```js

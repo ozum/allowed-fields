@@ -38,6 +38,22 @@ describe('allowedFields.isAllowed()', () => {
     done();
   });
 
+  it('should return false for * if some fields are blacklisted even * is whitelisted.', (done) => {
+    expect(allowedFields.isAllowed('member.*')).to.be.false();
+    done();
+  });
+
+  it('should return false for * if * is not whitelisted.', (done) => {
+    expect(allowedFields.isAllowed('manager.*')).to.be.false();
+    done();
+  });
+
+  it('should return false for * without table.', (done) => {
+    expect(allowedFields.isAllowed('*')).to.be.false();
+    expect(allowedFields.isAllowed('*', '')).to.be.false();
+    done();
+  });
+
   it('should return false for non-blacklisted fields if no whitelist is provided.', (done) => {
     expect(blackOnly.isAllowed('member.name')).to.be.true();
     done();
@@ -45,6 +61,16 @@ describe('allowedFields.isAllowed()', () => {
 
   it('should return false for blacklisted fields if no whitelist is provided.', (done) => {
     expect(blackOnly.isAllowed('member.salary')).to.be.false();
+    done();
+  });
+
+  it('should return false for * if some fields are blacklisted.', (done) => {
+    expect(blackOnly.isAllowed('member.*')).to.be.false();
+    done();
+  });
+
+  it('should return true for * if only blacklist is available and relation is not blacklisted.', (done) => {
+    expect(blackOnly.isAllowed('other.*')).to.be.true();
     done();
   });
 

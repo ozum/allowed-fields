@@ -47,18 +47,26 @@ class AllowedFields {
    * Returns whether given field/relation combination is an allowed field according to given rules.
    * Field name can be provided in single parameter or two parameters: i.e ('name', 'member')  or ('member.name').
    * @param     {string}          field           - Field name to test.
-   * @param     {string}          [relation]      - Relation name which field belongs to.
+   * @param     {string}          [relation='']   - Relation name which field belongs to.
    * @returns   {boolean}                         - Whether field is valid.
    * @example
    * allowedFields.isAllowed('member.name');
    * allowedFields.isAllowed('name', 'member');
    */
-  isAllowed(field: string, relation?: string) {
-    const internal       = getInternal(this);
-    const whiteListError = internal.whiteList && !internal.whiteList.has(field, relation);
-    const blackListError = internal.blackList && internal.blackList.has(field, relation);
+  isAllowed(field: string, relation?: string = '') {
+    const internal  = getInternal(this);
+    const { whiteList, blackList } = internal;
 
-    return !(whiteListError || blackListError);
+    if (field.match(/\./)) {
+      [relation, field] = field.split('.');
+    }
+
+    // * return false. Also relation.* returns false if any field of the relation is in blacklist.
+    const starError      = field === '*' && (!relation || (blackList && blackList.hasRelation(relation)));
+    const whiteListError = whiteList && !whiteList.has(field, relation);
+    const blackListError = blackList && blackList.has(field, relation);
+
+    return !(starError || whiteListError || blackListError);
   }
 }
 
