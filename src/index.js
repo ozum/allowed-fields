@@ -36,7 +36,7 @@ class AllowedFields {
    * employees.isAllowed('member.salary');  // false
    * employees.isAllowed('manager.salary'); // false
    */
-  constructor({ whiteList, blackList }: { whiteList?: Fields, blackList?: Fields }) {
+  constructor({ whiteList, blackList }: {| whiteList?: Fields, blackList?: Fields |}) {
     const internal = getInternal(this);
 
     internal.whiteList = whiteList ? new FieldList(whiteList) : undefined;
@@ -70,5 +70,5 @@ class AllowedFields {
   }
 }
 
-export type { Fields };
+export type { Fields } from './field-list';
 export default AllowedFields;

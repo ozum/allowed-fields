@@ -20,7 +20,8 @@
   "license": "MIT",
   "scripts": {
     "watch:babel": "babel src/ -d lib/ --source-maps -watch",
-    "build": "rm -rf lib && babel src/ -d lib/ --source-maps && flow gen-flow-files src --out-dir lib && npm run doc",
+    "//": "Because flow gen-flow-files has bugs such as 'export default class xxx {}', I use flow-copy-source instead of flow gen-flow-files src --out-dir lib",
+    "build": "rm -rf lib && babel src/ -d lib/ --source-maps && flow-copy-source src lib && npm run doc",
     "flow": "flow",
     "flowtyped": "flow-typed install",
     "lint": "eslint src test --fix --ignore-path .gitignore",
@@ -35,7 +36,7 @@
     "babel-cli": "^6.x",
     "babel-eslint": "^8.x",
     "babel-plugin-istanbul": "^4.x",
-    "babel-preset-env": "^1.x",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.x",
     "babel-register": "^6.x",
     "code": "^5.x",
@@ -46,6 +47,7 @@
     "eslint-plugin-jsx-a11y": "^6.x",
     "eslint-plugin-react": "^7.x",
     "flow-bin": "^0.x",
+    "flow-copy-source": "^1.x",
     "jsdoc-babel": "^0.x",
     "jsdoc-to-markdown": "^3.x",
     "mocha": "^4.x",
@@ -53,6 +55,6 @@
     "source-map-support": "^0.x"
   },
   "dependencies": {
-    "internal-data": "0.0.4"
+    "internal-data": "0.0.7"
   }
 }
