@@ -13,7 +13,7 @@ given field is allowed.
 
 ```js
 import AllowedFields from 'allowed-fields';
-import type { Fields } from 'allowed-fields';
+import type { Fields } from 'allowed-fields';   // In case you need the type (see API below) for whiteList and blackList
 ```
 
 ### Vanilla JS
