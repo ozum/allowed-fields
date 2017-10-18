@@ -46,7 +46,7 @@ class AllowedFields {
   /**
    * Returns whether given field/relation combination is an allowed field according to given rules.
    * Field name can be provided in single parameter or two parameters: i.e ('name', 'member')  or ('member.name').
-   * @param     {string}          field           - Field name to test.
+   * @param     {string}          field           - Field name to test. i.e `'name'`. Also it may contain field name such as 'member.name'
    * @param     {string}          [relation='']   - Relation name which field belongs to.
    * @returns   {boolean}                         - Whether field is valid.
    * @example
