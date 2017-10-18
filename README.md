@@ -114,7 +114,7 @@ Field name can be provided in single parameter or two parameters: i.e ('name', '
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| field | <code>string</code> |  | Field name to test. |
+| field | <code>string</code> |  | Field name to test. i.e `'name'`. Also it may contain field name such as 'member.name' |
 | [relation] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | Relation name which field belongs to. |
 
 **Example**  
