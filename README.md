@@ -9,10 +9,20 @@ given field is allowed.
 
 # Synopsis
 
+### Flow
+
 ```js
 import AllowedFields from 'allowed-fields';
 import type { Fields } from 'allowed-fields';
+```
 
+### Vanilla JS
+
+```js
+const AllowedFields = require('allowed-fields');
+```
+
+```js
 const fields = new AllowedFields({
   whiteList: { '': 'color', member: '*', company: '*', manager: ['name'] },
   blackList: { member: ['salary'] },
