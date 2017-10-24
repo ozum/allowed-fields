@@ -19,7 +19,7 @@ import type { Fields } from 'allowed-fields';   // In case you need the type (se
 ### Vanilla JS
 
 ```js
-const AllowedFields = require('allowed-fields');
+const AllowedFields = require('allowed-fields').default;
 ```
 
 ```js
