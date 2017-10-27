@@ -53,7 +53,7 @@ class AllowedFields {
    * allowedFields.isAllowed('member.name');
    * allowedFields.isAllowed('name', 'member');
    */
-  isAllowed(field: string, relation?: string = '') {
+  isAllowed(field: string, relation?: string = ''): boolean {
     const internal  = getInternal(this);
     const { whiteList, blackList } = internal;
 
