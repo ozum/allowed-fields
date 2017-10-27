@@ -19,10 +19,8 @@ import type { Fields } from 'allowed-fields';   // In case you need the type (se
 ### Vanilla JS
 
 ```js
-const AllowedFields = require('allowed-fields').default;
-```
+const AllowedFields = require('allowed-fields');
 
-```js
 const fields = new AllowedFields({
   whiteList: { '': 'color', member: '*', company: '*', manager: ['name'] },
   blackList: { member: ['salary'] },
