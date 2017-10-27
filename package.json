@@ -1,6 +1,6 @@
 {
   "name": "allowed-fields",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Define white listed and black listed database fields and check whether given field is allowed.",
   "main": "lib",
   "bugs": "https://github.com/ozum/allowed-fields/issues",
