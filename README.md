@@ -2,6 +2,25 @@
 
 # allowed-fields
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Description](#description)
+- [Synopsis](#synopsis)
+    - [Flow](#flow)
+    - [Vanilla JS](#vanilla-js)
+- [Details](#details)
+- [API](#api)
+  - [Classes](#classes)
+  - [Typedefs](#typedefs)
+  - [AllowedFields](#allowedfields)
+    - [new AllowedFields([whiteList], [blackList])](#new-allowedfieldswhitelist-blacklist)
+    - [allowedFields.isAllowed(field, [relation]) ⇒ <code>boolean</code>](#allowedfieldsisallowedfield-relation-%E2%87%92-codebooleancode)
+  - [Fields : <code>Object.&lt;string, (string\|Array.&lt;string&gt;)&gt;</code>](#fields--codeobjectltstring-string%5Carrayltstringgtgtcode)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Description
 
 This module lets developer define white listed and black listed database fields and provides a function to check whether
@@ -53,8 +72,7 @@ every field in a table `*`
 
 <dl>
 <dt><a href="#AllowedFields">AllowedFields</a></dt>
-<dd><p>Class which validates database fields using white list and black list.</p>
-</dd>
+<dd><p>Class which validates database fields using white list and black list.</p></dd>
 </dl>
 
 ## Typedefs
@@ -62,15 +80,14 @@ every field in a table `*`
 <dl>
 <dt><a href="#Fields">Fields</a> : <code>Object.&lt;string, (string|Array.&lt;string&gt;)&gt;</code></dt>
 <dd><p>Relation fields. Keys are relation (table) names, values are fields.
-Fields can be provided as string or array of strings. ie. <code>field</code>, <code>entity.field</code> or <code>entity.*</code>.
-<code>entity.*</code> covers all fields in that relation.</p>
-</dd>
+Fields can be provided as string or array of strings. ie. <code>field</code>, <code>entity.field</code> or <code>entity.<em></code>.
+<code>entity.</em></code> covers all fields in that relation.</p></dd>
 </dl>
 
 <a name="AllowedFields"></a>
 
 ## AllowedFields
-Class which validates database fields using white list and black list.
+<p>Class which validates database fields using white list and black list.</p>
 
 **Kind**: global class  
 
@@ -81,13 +98,13 @@ Class which validates database fields using white list and black list.
 <a name="new_AllowedFields_new"></a>
 
 ### new AllowedFields([whiteList], [blackList])
-Creates object.
+<p>Creates object.</p>
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [whiteList] | [<code>Fields</code>](#Fields) | List of allowed identifiers (entities and fields) to be used in query. |
-| [blackList] | [<code>Fields</code>](#Fields) | List of identifiers which are prohibited to use in query. |
+| [whiteList] | [<code>Fields</code>](#Fields) | <p>List of allowed identifiers (entities and fields) to be used in query.</p> |
+| [blackList] | [<code>Fields</code>](#Fields) | <p>List of identifiers which are prohibited to use in query.</p> |
 
 **Example**  
 ```js
@@ -104,16 +121,18 @@ employees.isAllowed('manager.salary'); // false
 <a name="AllowedFields+isAllowed"></a>
 
 ### allowedFields.isAllowed(field, [relation]) ⇒ <code>boolean</code>
-Returns whether given field/relation combination is an allowed field according to given rules.
-Field name can be provided in single parameter or two parameters: i.e ('name', 'member')  or ('member.name').
+<p>Returns whether given field/relation combination is an allowed field according to given rules.
+Field name can be provided in single parameter or two parameters: i.e ('name', 'member')  or ('member.name').</p>
 
 **Kind**: instance method of [<code>AllowedFields</code>](#AllowedFields)  
-**Returns**: <code>boolean</code> - - Whether field is valid.  
+**Returns**: <code>boolean</code> - <ul>
+<li>Whether field is valid.</li>
+</ul>  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| field | <code>string</code> |  | Field name to test. i.e `'name'`. Also it may contain field name such as 'member.name' |
-| [relation] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | Relation name which field belongs to. |
+| field | <code>string</code> |  | <p>Field name to test. i.e <code>'name'</code>. Also it may contain field name such as 'member.name'</p> |
+| [relation] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | <p>Relation name which field belongs to.</p> |
 
 **Example**  
 ```js
@@ -123,8 +142,8 @@ allowedFields.isAllowed('name', 'member');
 <a name="Fields"></a>
 
 ## Fields : <code>Object.&lt;string, (string\|Array.&lt;string&gt;)&gt;</code>
-Relation fields. Keys are relation (table) names, values are fields.
-Fields can be provided as string or array of strings. ie. `field`, `entity.field` or `entity.*`.
-`entity.*` covers all fields in that relation.
+<p>Relation fields. Keys are relation (table) names, values are fields.
+Fields can be provided as string or array of strings. ie. <code>field</code>, <code>entity.field</code> or <code>entity.*</code>.
+<code>entity.*</code> covers all fields in that relation.</p>
 
 **Kind**: global typedef  

@@ -4,6 +4,19 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### 0.2.0 - 2017-11-25
+
+#### Added
+
+* Runtime flow checks.
+
+### Changed
+
+* Flow types moved to unified folder.
+* Lint and flow tests moved to posttest.
+* `concurrently` added for `watch` scripts.
+* Dependency updates.
+
 ### 0.1.5 - 2017-10-27
 
 #### Added
@@ -15,6 +28,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 #### Added
 
-* `*` support. 
+* `*` support.
   * `relation.*` returns false even `relation.*` is whitelisted, but some fields of relation are blacklisted.
   * `relation.*` returns true when there is only blacklist and relation is not black listed.

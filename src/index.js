@@ -1,13 +1,14 @@
 // @flow
 
+import InternalData from 'internal-data';
 import FieldList from './field-list';
-import type { Fields } from './field-list';
+import type { Fields } from './types';
 
-const getInternal: (AllowedFields) => Internal = require('internal-data')(); // eslint-disable-line no-use-before-define
+const internalData: InternalData<AllowedFields, Internal> = new InternalData(); // eslint-disable-line no-use-before-define
 
 /**
  * Private attributes of object.
- * @typedef   {Object}          Validator~Internal
+ * @typedef   {Object}          AllowedFields~Internal
  * @private
  * @property  {Fields}  whiteList             - Rule for allowed fields and relations.
  * @property  {Fields}  blackList             - Rule for disallowed fields and relations.
@@ -37,7 +38,7 @@ class AllowedFields {
    * employees.isAllowed('manager.salary'); // false
    */
   constructor({ whiteList, blackList }: {| whiteList?: Fields, blackList?: Fields |}) {
-    const internal = getInternal(this);
+    const internal = internalData.get(this);
 
     internal.whiteList = whiteList ? new FieldList(whiteList) : undefined;
     internal.blackList = blackList ? new FieldList(blackList) : undefined;
@@ -54,7 +55,7 @@ class AllowedFields {
    * allowedFields.isAllowed('name', 'member');
    */
   isAllowed(field: string, relation?: string = ''): boolean {
-    const internal  = getInternal(this);
+    const internal  = internalData.get(this);
     const { whiteList, blackList } = internal;
 
     if (field.match(/\./)) {
@@ -70,5 +71,5 @@ class AllowedFields {
   }
 }
 
-export type { Fields } from './field-list';
+export type { Fields };
 export default AllowedFields;

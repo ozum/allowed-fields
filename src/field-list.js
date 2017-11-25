@@ -1,14 +1,9 @@
 // @flow
 
-const getInternal: (FieldList) => Internal = require('internal-data')(); // eslint-disable-line no-use-before-define
+import InternalData from 'internal-data';
+import type { Fields } from './types';
 
-/**
- * Relation fields. Keys are relation (table) names, values are fields.
- * Fields can be provided as string or array of strings. ie. `field`, `entity.field` or `entity.*`.
- * `entity.*` covers all fields in that relation.
- * @typedef  {Object.<string, string | string[]>} Fields
- */
-type Fields = { [relationName: string]: string | string[] };
+const internalData: InternalData<FieldList, Internal> = new InternalData(); // eslint-disable-line no-use-before-define
 
 /**
  * Private attributes of object.
@@ -38,7 +33,7 @@ class FieldList {
    * fieldList.has('manager.salary'); // false
    */
   constructor(relationFields: Fields) {
-    const internal = getInternal(this);
+    const internal = internalData.get(this);
 
     internal.relations = new Map();
 
@@ -57,7 +52,7 @@ class FieldList {
    * fieldList.has('name', 'member');
    */
   has(field: string, relation: string): boolean {
-    const internal = getInternal(this);
+    const internal = internalData.get(this);
     const fields   = internal.relations.get(relation);
 
     return (fields !== undefined) && (fields.has('*') || fields.has(field));
@@ -71,9 +66,8 @@ class FieldList {
    * fieldList.hasRelation('member');
    */
   hasRelation(relation: string): boolean {
-    return getInternal(this).relations.has(relation);
+    return internalData.get(this).relations.has(relation);
   }
 }
 
-export type { Fields };
 export default FieldList;
