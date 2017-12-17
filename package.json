@@ -45,7 +45,7 @@
     "nsp": "^3.x",
     "nyc": "^11.x",
     "source-map-support": "^0.x",
-    "ts-node": "^3.x",
+    "ts-node": "^4.x",
     "tslint": "^5.x",
     "tslint-config-airbnb": "^5.x",
     "typescript": "^2.x"
