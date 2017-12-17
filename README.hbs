@@ -12,18 +12,19 @@ given field is allowed.
 
 # Synopsis
 
-### Flow
+**TypeScript**
 
 ```js
-import AllowedFields from 'allowed-fields';
-import type { Fields } from 'allowed-fields';   // In case you need the type (see API below) for whiteList and blackList
+import AllowedFields, { Fields } from 'allowed-fields';
 ```
 
-### Vanilla JS
+**JavaScript**
 
 ```js
 const AllowedFields = require('allowed-fields');
+```
 
+```js
 const fields = new AllowedFields({
   whiteList: { '': 'color', member: '*', company: '*', manager: ['name'] },
   blackList: { member: ['salary'] },

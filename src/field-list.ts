@@ -1,19 +1,4 @@
-// @flow
-
-import InternalData from 'internal-data';
-import type { Fields } from './types';
-
-const internalData: InternalData<FieldList, Internal> = new InternalData(); // eslint-disable-line no-use-before-define
-
-/**
- * Private attributes of object.
- * @typedef   {Object}  FieldList~Internal
- * @private
- * @property  {Map.<string, Set<string>>} relations - Relations covered by rule. Map keys are relation names, map values are set of field names.
- */
-type Internal = {
-  relations: Map<string, Set<string>>
-}
+import { Fields } from './types/index';
 
 /**
  * @private
@@ -21,10 +6,13 @@ type Internal = {
  * Relations and fields can be tested if they are covered by this rule.
  */
 class FieldList {
+  private _relations: Map<string, Set<string>>;
+
   /**
    * Creates a new DB field rule. `{ entity: '*' }` covers all fields in that relation. Fields without relation name can
    * be added as `{ '': 'surname' }`.
    * @param {Fields} relationFields - Configuration
+   * @return {FieldList}            - Object
    * @example
    * const fieldList = new FieldList({ '': ['id'], 'member': '*', manager: ['name', 'surname'], color: 'code' });
    * fieldList.has('member.salary');  // true
@@ -33,13 +21,12 @@ class FieldList {
    * fieldList.has('manager.salary'); // false
    */
   constructor(relationFields: Fields) {
-    const internal = internalData.get(this);
-
-    internal.relations = new Map();
+    this._relations = new Map();
 
     Object.keys(relationFields).forEach((relation) => {
-      const fields = new Set(Array.isArray(relationFields[relation]) ? relationFields[relation] : [relationFields[relation]]);
-      internal.relations.set(relation, fields);
+      const relationField = relationFields[relation];
+      const fields = new Set(Array.isArray(relationField) ? relationField : [relationField]);
+      this._relations.set(relation, fields);
     });
   }
 
@@ -52,9 +39,7 @@ class FieldList {
    * fieldList.has('name', 'member');
    */
   has(field: string, relation: string): boolean {
-    const internal = internalData.get(this);
-    const fields   = internal.relations.get(relation);
-
+    const fields   = this._relations.get(relation);
     return (fields !== undefined) && (fields.has('*') || fields.has(field));
   }
 
@@ -66,7 +51,7 @@ class FieldList {
    * fieldList.hasRelation('member');
    */
   hasRelation(relation: string): boolean {
-    return internalData.get(this).relations.has(relation);
+    return this._relations.has(relation);
   }
 }
 

@@ -4,6 +4,16 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### 0.3.0 - 2017-11-25
+
+#### Added
+
+* `Joi` validations.
+
+#### Changed
+
+* From Flow to TypeScript.
+
 ### 0.2.0 - 2017-11-25
 
 #### Added

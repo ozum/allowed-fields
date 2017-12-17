@@ -8,15 +8,14 @@
 
 - [Description](#description)
 - [Synopsis](#synopsis)
-    - [Flow](#flow)
-    - [Vanilla JS](#vanilla-js)
 - [Details](#details)
 - [API](#api)
   - [Classes](#classes)
   - [Typedefs](#typedefs)
+  - [AllowedFieldsConfig](#allowedfieldsconfig)
   - [AllowedFields](#allowedfields)
-    - [new AllowedFields([whiteList], [blackList])](#new-allowedfieldswhitelist-blacklist)
-    - [allowedFields.isAllowed(field, [relation]) ⇒ <code>boolean</code>](#allowedfieldsisallowedfield-relation-%E2%87%92-codebooleancode)
+    - [new AllowedFields([config])](#new-allowedfieldsconfig)
+    - [allowedFields.isAllowed(fieldName, [relationName]) ⇒ <code>boolean</code>](#allowedfieldsisallowedfieldname-relationname-%E2%87%92-codebooleancode)
   - [Fields : <code>Object.&lt;string, (string\|Array.&lt;string&gt;)&gt;</code>](#fields--codeobjectltstring-string%5Carrayltstringgtgtcode)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -28,18 +27,19 @@ given field is allowed.
 
 # Synopsis
 
-### Flow
+**TypeScript**
 
 ```js
-import AllowedFields from 'allowed-fields';
-import type { Fields } from 'allowed-fields';   // In case you need the type (see API below) for whiteList and blackList
+import AllowedFields, { Fields } from 'allowed-fields';
 ```
 
-### Vanilla JS
+**JavaScript**
 
 ```js
 const AllowedFields = require('allowed-fields');
+```
 
+```js
 const fields = new AllowedFields({
   whiteList: { '': 'color', member: '*', company: '*', manager: ['name'] },
   blackList: { member: ['salary'] },
@@ -84,6 +84,19 @@ Fields can be provided as string or array of strings. ie. <code>field</code>, <c
 <code>entity.</em></code> covers all fields in that relation.</p></dd>
 </dl>
 
+<a name="AllowedFieldsConfig"></a>
+
+## AllowedFieldsConfig
+<p>Aloowed fields sonfiguration.</p>
+
+**Kind**: global interface  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| whiteList | [<code>Fields</code>](#Fields) | <p>List of allowed identifiers (entities and fields) to be used in query.</p> |
+| blackList | [<code>Fields</code>](#Fields) | <p>List of identifiers which are prohibited to use in query.</p> |
+
 <a name="AllowedFields"></a>
 
 ## AllowedFields
@@ -92,19 +105,20 @@ Fields can be provided as string or array of strings. ie. <code>field</code>, <c
 **Kind**: global class  
 
 * [AllowedFields](#AllowedFields)
-    * [new AllowedFields([whiteList], [blackList])](#new_AllowedFields_new)
-    * [.isAllowed(field, [relation])](#AllowedFields+isAllowed) ⇒ <code>boolean</code>
+    * [new AllowedFields([config])](#new_AllowedFields_new)
+    * [.isAllowed(fieldName, [relationName])](#AllowedFields+isAllowed) ⇒ <code>boolean</code>
 
 <a name="new_AllowedFields_new"></a>
 
-### new AllowedFields([whiteList], [blackList])
+### new AllowedFields([config])
 <p>Creates object.</p>
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [whiteList] | [<code>Fields</code>](#Fields) | <p>List of allowed identifiers (entities and fields) to be used in query.</p> |
-| [blackList] | [<code>Fields</code>](#Fields) | <p>List of identifiers which are prohibited to use in query.</p> |
+| [config] | <code>Object</code> | <p>Configuration</p> |
+| [config.whiteList] | [<code>Fields</code>](#Fields) | <p>List of allowed identifiers (entities and fields) to be used in query.</p> |
+| [config.blackList] | [<code>Fields</code>](#Fields) | <p>List of identifiers which are prohibited to use in query.</p> |
 
 **Example**  
 ```js
@@ -120,7 +134,7 @@ employees.isAllowed('manager.salary'); // false
 ```
 <a name="AllowedFields+isAllowed"></a>
 
-### allowedFields.isAllowed(field, [relation]) ⇒ <code>boolean</code>
+### allowedFields.isAllowed(fieldName, [relationName]) ⇒ <code>boolean</code>
 <p>Returns whether given field/relation combination is an allowed field according to given rules.
 Field name can be provided in single parameter or two parameters: i.e ('name', 'member')  or ('member.name').</p>
 
@@ -131,13 +145,13 @@ Field name can be provided in single parameter or two parameters: i.e ('name', '
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| field | <code>string</code> |  | <p>Field name to test. i.e <code>'name'</code>. Also it may contain field name such as 'member.name'</p> |
-| [relation] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | <p>Relation name which field belongs to.</p> |
+| fieldName | <code>string</code> |  | <p>Field name to test. i.e <code>'name'</code>. Also it may contain field name such as 'member.name'</p> |
+| [relationName] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | <p>Relation name which field belongs to.</p> |
 
 **Example**  
 ```js
-allowedFields.isAllowed('member.name');
-allowedFields.isAllowed('name', 'member');
+allowedFields.isAllowed('member.name');    // Table and field as a single string.
+allowedFields.isAllowed('name', 'member'); // Field, Table.
 ```
 <a name="Fields"></a>
 
@@ -147,3 +161,12 @@ Fields can be provided as string or array of strings. ie. <code>field</code>, <c
 <code>entity.*</code> covers all fields in that relation.</p>
 
 **Kind**: global typedef  
+**Example**  
+```js
+const fields = {
+  '': 'name',                  // Field name without table.
+  'person': 'name',            // Single field from `person` table.
+  'cart':   ['name', 'color'], // Some fields from `cart` table.
+  'report': '*',               // All fields from `report` table.
+}
+```

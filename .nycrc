@@ -6,19 +6,19 @@
   "statements":     100,
   "cache":          true,
   "check-coverage": true,
+  "extension": [
+    ".ts",
+    ".tsx"
+  ],
   "exclude": [
     "lib",
     "coverage",
-    "test"
+    "test",
+    "**/*.d.ts"
   ],
   "reporter": [
     "text",
-    "html"
-  ],
-  "require": [
-    "babel-register"
-  ],
-  "sourceMap": false,
-  "instrument": false
+    "html",
+    "lcov"
+  ]
 }
-
