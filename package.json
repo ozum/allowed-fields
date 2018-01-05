@@ -6,14 +6,8 @@
   "types": "lib/index.d.ts",
   "bugs": "https://github.com/ozum/allowed-fields/issues",
   "repository": "ozum/allowed-fields",
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    "db fields",
-    "whitelist",
-    "blacklist"
-  ],
+  "files": ["lib"],
+  "keywords": ["db fields", "whitelist", "blacklist"],
   "author": "Özüm Eldoğan",
   "license": "MIT",
   "scripts": {
@@ -27,8 +21,10 @@
     "posttest": "tsc --noemit && npm run lint && nsp check",
     "test:cover": "cross-env NODE_ENV=test nyc mocha --async-only --check-leaks --require ts-node/register test/*.ts",
     "map": "node -r source-map-support/register",
-    "doc": "npm run tsfordoc && jsdoc2md --files 'doc-lib/**/*.js' --configure jsdoc.json --template README.hbs > README.md && doctoc README.md && rm -rf doc-lib",
-    "tsfordoc": "tsc --rootDir src --outDir 'doc-lib' --module esnext --target esnext --sourceMap false --declaration false --removeComments false",
+    "doc":
+      "npm run tsfordoc && jsdoc2md --files 'doc-lib/**/*.js' --configure jsdoc.json --template README.hbs > README.md && doctoc README.md && rm -rf doc-lib",
+    "tsfordoc":
+      "tsc --rootDir src --outDir 'doc-lib' --module esnext --target esnext --sourceMap false --declaration false --removeComments false",
     "preversion": "npm run test:cover && npm run posttest && npm run build && git add README.md",
     "postversion": "git push && git push --tags && npm publish"
   },
