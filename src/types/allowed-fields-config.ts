@@ -5,8 +5,8 @@
  * @property {Fields}  [blackList]  - List of identifiers which are prohibited to use in query.
  */
 
-import * as Joi   from 'joi';
-import { Fields, FieldsSchema } from './fields';
+import * as Joi from "joi";
+import { Fields, FieldsSchema } from "./fields";
 
 export interface AllowedFieldsConfig {
   whiteList?: Fields;

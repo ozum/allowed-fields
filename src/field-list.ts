@@ -1,4 +1,4 @@
-import { Fields } from './types/index';
+import { Fields } from "./types/index";
 
 /**
  * @private
@@ -23,7 +23,7 @@ class FieldList {
   constructor(relationFields: Fields) {
     this._relations = new Map();
 
-    Object.keys(relationFields).forEach((relation) => {
+    Object.keys(relationFields).forEach(relation => {
       const relationField = relationFields[relation];
       const fields = new Set(Array.isArray(relationField) ? relationField : [relationField]);
       this._relations.set(relation, fields);
@@ -39,8 +39,8 @@ class FieldList {
    * fieldList.has('name', 'member');
    */
   has(field: string, relation: string): boolean {
-    const fields   = this._relations.get(relation);
-    return (fields !== undefined) && (fields.has('*') || fields.has(field));
+    const fields = this._relations.get(relation);
+    return fields !== undefined && (fields.has("*") || fields.has(field));
   }
 
   /**

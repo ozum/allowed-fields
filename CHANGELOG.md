@@ -33,7 +33,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * `add-module-exports` babel plugin is added. `require('fix-set')` is working now.
 
-
 ### 0.1.0 - 2017-10-17
 
 #### Added
