@@ -2,27 +2,29 @@ import AllowedFields from "./";
 
 const allowedFields = new AllowedFields({
   whiteList: { "": "color", member: "*", manager: ["name", "surname"] },
-  blackList: { member: ["salary", "id"] },
+  blackList: { member: ["salary", "id"] }
 });
 
 const blackOnly = new AllowedFields({
-  blackList: { member: ["salary", "id"] },
+  blackList: { member: ["salary", "id"] }
 });
 
 const whiteOnly = new AllowedFields({
-  whiteList: { member: "*" },
+  whiteList: { member: "*" }
 });
 
 describe("FieldList", () => {
   it("should throw error if invalid config is provided.", done => {
-    expect(() => new AllowedFields({ blackList: 3 as any })).toThrow('"blackList" must be an object');
+    expect(() => new AllowedFields({ blackList: 3 as any })).toThrow(
+      '"blackList" must be an object'
+    );
     done();
   });
 });
 
 describe("allowedFields.isAllowed()", () => {
   it("should return true for whitelisted field without relation.", done => {
-    expect(allowedFields.isAllowed("color")).toBe(true);
+    expect(allowedFields.isAllowed("color")).toBe(false);
     done();
   });
 
