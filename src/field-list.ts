@@ -1,4 +1,4 @@
-import { Fields } from "./types/index";
+import { Fields } from "./types";
 
 /**
  * @private

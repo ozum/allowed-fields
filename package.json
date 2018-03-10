@@ -11,31 +11,31 @@
     "type": "git",
     "url": "git+https://github.com/ozum/allowed-fields.git"
   },
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    "db fields",
-    "whitelist",
-    "blacklist"
-  ],
+  "files": ["lib"],
+  "keywords": ["db fields", "whitelist", "blacklist"],
   "author": {
     "name": "Özüm Eldoğan"
   },
   "license": "MIT",
   "scripts": {
-    "build": "moe-scripts build",
+    "watch": "concurrently 'moe-scripts build --watch > /dev/null' 'moe-scripts test --watch'",
+    "module": "npm install ozum/moe-scripts#master -save-dev",
+    "build": "moe-scripts build --watch",
     "build:doc": "moe-scripts doc --no-cache",
     "test": "moe-scripts test",
     "test:update": "moe-scripts test --updateSnapshot",
     "lint": "moe-scripts lint",
     "format": "moe-scripts format",
     "validate": "moe-scripts validate",
-    "precommit": "moe-scripts precommit",
     "postversion": "git push && git push --tags && npm publish",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "nodemon": "nodemon --delay 0.2 -r source-map-support/register",
+    "watch:build": "moe-scripts build --watch",
+    "watch:test": "moe-scripts test --watch"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "moe-scripts": "0.0.6"
+  },
   "dependencies": {
     "@types/joi": "^13.0.5",
     "joi": "^13.1.2"

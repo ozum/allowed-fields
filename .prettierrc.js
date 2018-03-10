@@ -1,1 +1,1 @@
-module.exports = require("moe-scripts/.prettierrc.js");
+module.exports = require("moe-scripts/prettier.js");
