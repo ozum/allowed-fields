@@ -22,7 +22,7 @@ describe("FieldList", () => {
 
 describe("allowedFields.isAllowed()", () => {
   it("should return true for whitelisted field without relation.", done => {
-    expect(allowedFields.isAllowed("color")).toBe(false);
+    expect(allowedFields.isAllowed("color")).toBe(true);
     done();
   });
 
