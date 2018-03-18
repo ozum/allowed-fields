@@ -1,6 +1,6 @@
-import * as Joi     from 'joi';
-import FieldList    from './field-list';
-import { AllowedFieldsConfig, AllowedFieldsConfigSchema } from './types/index';
+import * as Joi from "joi";
+import FieldList from "./field-list";
+import { AllowedFieldsConfig, AllowedFieldsConfigSchema } from "./types/index";
 
 /**
  * Class which validates database fields using white list and black list.
@@ -48,11 +48,11 @@ class AllowedFields {
    * allowedFields.isAllowed('member.name');    // Table and field as a single string.
    * allowedFields.isAllowed('name', 'member'); // Field, Table.
    */
-  isAllowed(fieldName: string, relationName: string = ''): boolean {
-    const [relation, field] = fieldName.match(/\./) ? fieldName.split('.') : [relationName, fieldName];
+  isAllowed(fieldName: string, relationName: string = ""): boolean {
+    const [relation, field] = fieldName.match(/\./) ? fieldName.split(".") : [relationName, fieldName];
 
     // * return false. Also relation.* returns false if any field of the relation is in blacklist.
-    const starError      = field === '*' && (!relation || (this._blackList && this._blackList.hasRelation(relation)));
+    const starError = field === "*" && (!relation || (this._blackList && this._blackList.hasRelation(relation)));
     const whiteListError = this._whiteList && !this._whiteList.has(field, relation);
     const blackListError = this._blackList && this._blackList.has(field, relation);
 

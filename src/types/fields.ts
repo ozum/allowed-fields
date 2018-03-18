@@ -12,14 +12,8 @@
  * }
  */
 
-import * as Joi from 'joi';
+import * as Joi from "joi";
 
 export type Fields = { [relationName: string]: string | string[] };
 
-export const FieldsSchema = Joi.object()
-  .pattern(/.*?/,
-           Joi.alternatives(
-             Joi.string(),
-             Joi.array().items(Joi.string()),
-           ),
-  );
+export const FieldsSchema = Joi.object().pattern(/.*?/, Joi.alternatives(Joi.string(), Joi.array().items(Joi.string())));
