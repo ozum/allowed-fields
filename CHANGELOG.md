@@ -3,9 +3,8 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 <a name="0.3.3"></a>
+
 ## [0.3.3](https://github.com/ozum/allowed-fields/compare/v0.3.2...v0.3.3) (2018-03-18)
-
-
 
 <!-- Titles: Added, Changed, Deprecated, Removed, Fixed, Security -->
 
@@ -41,7 +40,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 #### Added
 
 * `add-module-exports` babel plugin is added. `require('fix-set')` is working now.
-
 
 ### 0.1.0 - 2017-10-17
 
