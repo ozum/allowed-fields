@@ -40,7 +40,7 @@
     "postversion": "git push && git push --tags && npm publish"
   },
   "devDependencies": {
-    "moe-scripts": "0.0.36"
+    "moe-scripts": "0.0.37"
   },
   "dependencies": {
     "@types/joi": "^13.0.6",
