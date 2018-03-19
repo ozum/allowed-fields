@@ -1,6 +1,6 @@
 {
   "name": "allowed-fields",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Define white listed and black listed database fields and check whether given field is allowed.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -11,14 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/ozum/allowed-fields.git"
   },
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    "db fields",
-    "whitelist",
-    "blacklist"
-  ],
+  "files": ["lib"],
+  "keywords": ["db fields", "whitelist", "blacklist"],
   "author": {
     "name": "Özüm Eldoğan"
   },
