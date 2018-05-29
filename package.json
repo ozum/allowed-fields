@@ -11,12 +11,28 @@
     "type": "git",
     "url": "git+https://github.com/ozum/allowed-fields.git"
   },
-  "files": ["lib"],
-  "keywords": ["db fields", "whitelist", "blacklist"],
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "db fields",
+    "whitelist",
+    "blacklist"
+  ],
   "author": {
     "name": "Özüm Eldoğan"
   },
   "license": "MIT",
+  "devDependencies": {
+    "moe-scripts": "0.1.12"
+  },
+  "dependencies": {
+    "@types/joi": "^13.0.8",
+    "joi": "^13.3.0"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/ozum/allowed-fields#readme",
+  "_id": "allowed-fields@0.3.2",
   "scripts": {
     "build": "moe-scripts build",
     "build:doc": "moe-scripts doc --no-cache",
@@ -30,17 +46,6 @@
     "test": "moe-scripts test",
     "test:update": "moe-scripts test --updateSnapshot",
     "validate": "moe-scripts validate",
-    "watch": "concurrently 'npm run build -- --watch' 'npm run test -- --watch' | awk '{gsub(/\\033c/,\"\") system(\"\")}1'",
-    "postversion": "git push && git push --tags && npm publish"
-  },
-  "devDependencies": {
-    "moe-scripts": "0.0.38"
-  },
-  "dependencies": {
-    "@types/joi": "^13.0.6",
-    "joi": "^13.1.2"
-  },
-  "readme": "ERROR: No README data found!",
-  "homepage": "https://github.com/ozum/allowed-fields#readme",
-  "_id": "allowed-fields@0.3.2"
+    "watch": "concurrently 'npm run build -- --watch' 'npm run test -- --watch' | awk '{gsub(/\\033c/,\"\") system(\"\")}1'"
+  }
 }

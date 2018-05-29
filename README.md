@@ -6,18 +6,18 @@
 
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-* [Description](#description)
-* [Synopsis](#synopsis)
-* [Details](#details)
-* [API](#api)
-  * [Classes](#classes)
-  * [Typedefs](#typedefs)
-  * [Interfaces](#interfaces)
-  * [AllowedFieldsConfig](#allowedfieldsconfig)
-  * [AllowedFields](#allowedfields)
-    * [new AllowedFields([config])](#new-allowedfieldsconfig)
-    * [allowedFields.isAllowed(fieldName, [relationName]) ⇒ <code>boolean</code>](#allowedfieldsisallowedfieldname-relationname-%E2%87%92-codebooleancode)
-  * [Fields : <code>Object.&lt;string, (string\|Array.&lt;string&gt;)&gt;</code>](#fields--codeobjectltstring-string%5Carrayltstringgtgtcode)
+- [Description](#description)
+- [Synopsis](#synopsis)
+- [Details](#details)
+- [API](#api)
+  - [Classes](#classes)
+  - [Typedefs](#typedefs)
+  - [Interfaces](#interfaces)
+  - [AllowedFieldsConfig](#allowedfieldsconfig)
+  - [AllowedFields](#allowedfields)
+    - [new AllowedFields([config])](#new-allowedfieldsconfig)
+    - [allowedFields.isAllowed(fieldName, [relationName]) ⇒ <code>boolean</code>](#allowedfieldsisallowedfieldname-relationname-%E2%87%92-codebooleancode)
+  - [Fields : <code>Object.&lt;string, (string\|Array.&lt;string&gt;)&gt;</code>](#fields--codeobjectltstring-string%5Carrayltstringgtgtcode)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -115,9 +115,9 @@ Fields can be provided as string or array of strings. ie. <code>field</code>, <c
 
 **Kind**: global class
 
-* [AllowedFields](#AllowedFields)
-  * [new AllowedFields([config])](#new_AllowedFields_new)
-  * [.isAllowed(fieldName, [relationName])](#AllowedFields+isAllowed) ⇒ <code>boolean</code>
+- [AllowedFields](#AllowedFields)
+  - [new AllowedFields([config])](#new_AllowedFields_new)
+  - [.isAllowed(fieldName, [relationName])](#AllowedFields+isAllowed) ⇒ <code>boolean</code>
 
 <a name="new_AllowedFields_new"></a>
 
