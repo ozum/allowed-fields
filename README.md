@@ -3,7 +3,6 @@
 # allowed-fields
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Description](#description)
@@ -142,7 +141,7 @@ Field name can be provided in single parameter or two parameters: i.e ('name', '
 **Returns**: <code>boolean</code> - <ul>
 
 <li>Whether field is valid.</li>
-</ul>  
+</ul>
 
 | Param          | Type                | Default                               | Description                                                                                              |
 | -------------- | ------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------- |
