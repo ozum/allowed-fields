@@ -1,6 +1,6 @@
 {
   "name": "allowed-fields",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Define white listed and black listed database fields and check whether given field is allowed.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
